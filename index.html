@@ -8,19 +8,25 @@
     <script src ="script.js" defer></script>
 </head>
 <body>
-    <button class= "start">Click Me</button>
-    <button class ="start">Click Me</button>
+
+    <div class="both-button-container">
+        <button class="start-both-button">Start</button>
+    </div>
+  
+    
+    <div class="watches">
+   
     <div id = "stopwatch1" class ="watchContainer">
         <div class="watch-title">Test</div>
         
        <div id="number-container">
-        <div class="hour disp"></div>
-        <div class="dot-container">.</div>
-        <div class="min disp"></div>
-        <div class="dot-container">.</div>
-        <div class="sec disp"></div>
-        <div class="dot-container">.</div>
-        <div class="ms disp"></div>
+        <div class="hour disp"><div class="nums">0</div></div>
+        <div class="dot-container">:</div>
+        <div class="min disp"><div class="nums">0</div></div>
+        <div class="dot-container">:</div>
+        <div class="sec disp"><div class="nums">0</div></div>
+        <div class="dot-container">:</div>
+        <div class="ms disp"><div class="nums">0</div></div>
         </div>
         <div class="text-container">
             <div class="text">hour</div>
@@ -29,18 +35,22 @@
             <div class="text">ms</div>
         </div>
         
+        
+    
+        
     </div>
     <div id = "stopwatch2" class ="watchContainer">
         <div class="watch-title">Test</div>
         
         <div id="number-container">
-         <div class="hour disp"></div>
-         <div class="dot-container">.</div>
-         <div class="min disp"></div>
-         <div class="dot-container">.</div>
-         <div class="sec disp"></div>
-         <div class="dot-container">.</div>
-         <div class="ms disp"></div>
+         <div class="hour disp"><div class="nums">0</div></div>
+         <div class="dot-container">:</div>
+         <div class="dot-container"></div>
+         <div class="min disp"><div class="nums">0</div></div>
+         <div class="dot-container">:</div>
+         <div class="sec disp"><div class="nums">0</div></div>
+         <div class="dot-container">:</div>
+         <div class="ms disp"><div class="nums">0</div></div>
          </div>
          <div class="text-container">
              <div class="text">hour</div>
@@ -50,6 +60,11 @@
          </div>
     </div>
     
+</div>
+<div class="each-button-container">
+    <button class ="start-button">Start</button>
+    <button class ="start-button">Start</button>
     
+</div>
 </body>
 </html>

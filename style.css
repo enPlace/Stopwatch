@@ -3,14 +3,67 @@ body{
     display: flex; 
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     min-height: 100vh;
     color: white;
 }
 
-button{
-    float:left;
+.watches{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+
 }
+
+
+
+.both-button-container{
+   
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-right: 40px;
+   
+}
+
+.each-button-container{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+
+.start-both-button{
+    width: 100px;
+    height: 645px;
+    margin-top: ;
+    background-color:  rgba(53, 120, 245, 0.322);
+}
+.start-button{
+    width: 100px;
+    height: 300px;
+    margin-left: ;
+    background-color: rgb(243, 204, 74);
+    margin: 20px;
+}
+
+button{
+    border-radius: 8px;
+}
+.start-button:hover{
+    background-color: palegoldenrod
+}
+
+.start-both-button:hover{
+    background-color: palegoldenrod
+}
+
 
 .watch-title{
     text-align: center;
@@ -25,11 +78,15 @@ button{
     height: 120px; 
     border: 3px solid white;
     display: inline-block;
-    margin:0px 10px
-    
-
+    margin:0px 10px;
+    text-align: center;
+    font-size: 80px;
+    border-radius: 2px;
 }
 
+.nums{
+    margin-top: 15px;
+}
 .dot-container{
     display: inline-block;
     margin-top:-100px;
@@ -41,7 +98,10 @@ button{
 .watchContainer{
         margin: 20px;
         border: 5px solid #FFFF00;
+        border-radius: 10px;
         padding: 40px;
+        min-width: 460px;
+        
 
    
 }
@@ -49,11 +109,12 @@ button{
 .text-container{
     margin-left: 20px;
     margin-right: -40px;
+    margin-top: 15px;
 }
 
 .text{
     display: inline-block;
     font-size: 25px; 
-    color: orange; 
+    color: white; 
     margin-right: 80px;
 }
