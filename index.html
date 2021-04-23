@@ -10,7 +10,7 @@
 <body>
 
     <div class="both-button-container">
-        <button class="start-both-button">Start</button>
+        <button class="start-both-button" data-status = "off">Start</button>
     </div>
   
     
@@ -20,13 +20,13 @@
         <div class="watch-title">Test</div>
         
        <div id="number-container">
-        <div class="hour disp"><div class="nums">0</div></div>
+        <div class="hour disp"><div id ="counter-hour" class="nums">0</div></div>
         <div class="dot-container">:</div>
-        <div class="min disp"><div class="nums">0</div></div>
+        <div class="min disp"><div id ="counter-min" class="nums">0</div></div>
         <div class="dot-container">:</div>
-        <div class="sec disp"><div class="nums">0</div></div>
+        <div class="sec disp"><div id ="counter-sec" class="nums">9</div></div>
         <div class="dot-container">:</div>
-        <div class="ms disp"><div class="nums">0</div></div>
+        <div class="ms disp"><div id ="counter-ms" class="nums">9</div></div>
         </div>
         <div class="text-container">
             <div class="text">hour</div>
@@ -42,15 +42,14 @@
     <div id = "stopwatch2" class ="watchContainer">
         <div class="watch-title">Test</div>
         
-        <div id="number-container">
-         <div class="hour disp"><div class="nums">0</div></div>
+        <div id="number-container2">
+         <div class="hour disp"><div id ="date-hour"class="nums">0</div></div>
          <div class="dot-container">:</div>
-         <div class="dot-container"></div>
-         <div class="min disp"><div class="nums">0</div></div>
+         <div class="min disp"><div id ="date-min" class="nums">0</div></div>
          <div class="dot-container">:</div>
-         <div class="sec disp"><div class="nums">0</div></div>
+         <div class="sec disp"><div id ="date-sec" class="nums">0</div></div>
          <div class="dot-container">:</div>
-         <div class="ms disp"><div class="nums">0</div></div>
+         <div class="ms disp"><div id ="date-ms" class="nums">0</div></div>
          </div>
          <div class="text-container">
              <div class="text">hour</div>
@@ -62,8 +61,8 @@
     
 </div>
 <div class="each-button-container">
-    <button class ="start-button">Start</button>
-    <button class ="start-button">Start</button>
+    <button id ="counter-button" class ="start-button" data-status = "off">Start</button>
+    <button id = "date-button" class ="start-button" data-status = "off" >Start</button>
     
 </div>
 </body>
