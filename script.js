@@ -21,11 +21,13 @@ let counterOn
 let dateOn
 
 
-/*Function for pushing the counter information to the first stopwatch*/
+
 
 
 
 function counterClock(){
+    /*  Function for pushing the counter information to the first stopwatch. 
+        Increments ms by 1 on stopwatch1 and will increment secs, mins, and hour if limit of prev value is reached*/
     let ms = parseInt(counterMs.textContent)
     let sec = parseInt(counterSec.textContent)
     let min = parseInt(counterMin.textContent)
@@ -46,22 +48,19 @@ function counterClock(){
     }else{
         counterMs.textContent = ms + 1
     }
-
-    
 }
 
 function startCounterClock(){
+    /*Uses a setInterval() or clearInterval() function to start and stop "stopwatch1" */
     if(counterStatus=="off"){
         counterOn = setInterval(counterClock, 100)
         counterStatus= "on"
         return counterOn
-        
     }
     if (counterStatus =="on"){
         clearInterval(counterOn)
         counterStatus = "off"
-        
-        
     }
-    
 }
+
+counterButton.addEventListener("click", startCounterClock)
