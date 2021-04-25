@@ -1,10 +1,11 @@
 body{
-    background-color: rgb(100, 98, 98);
+    background-color: rgb(36, 36, 41);
     display: flex; 
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     color: white;
+    font-family: sans-serif;
 }
 
 .watches{
@@ -43,18 +44,18 @@ body{
     width: 100px;
     height: 645px;
     margin-top: ;
-    background-color:  rgba(53, 120, 245, 0.322);
+    background-color:  rgba(48, 197, 85, 0.842);
 }
 .start-button{
     width: 100px;
     height: 300px;
     margin-left: ;
-    background-color: rgb(243, 204, 74);
+    background-color: rgb(74, 243, 116);
     margin: 20px;
 }
 
 button{
-    border-radius: 8px;
+    border-radius: 70px;
 }
 .start-button:hover{
     background-color: palegoldenrod
@@ -81,7 +82,7 @@ button{
     margin:0px 10px;
     text-align: center;
     font-size: 70px;
-    border-radius: 2px;
+    border-radius: 15px;
 }
 
 .nums{
@@ -98,7 +99,7 @@ button{
 .watchContainer{
         margin: 20px;
         border: 5px solid #FFFF00;
-        border-radius: 10px;
+        border-radius: 100px;
         padding: 40px;
         min-width: 530px;
         
@@ -119,4 +120,6 @@ button{
     margin-right: 80px;
 }
 
-white
+.reset{
+    background-color: rgb(230, 235, 182);
+}
