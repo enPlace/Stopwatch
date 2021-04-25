@@ -74,13 +74,13 @@ button{
 }
 
 .disp{
-    width:60px;
-    height: 120px; 
+    width:80px;
+    height: 110px; 
     border: 3px solid white;
     display: inline-block;
     margin:0px 10px;
     text-align: center;
-    font-size: 80px;
+    font-size: 70px;
     border-radius: 2px;
 }
 
@@ -100,7 +100,7 @@ button{
         border: 5px solid #FFFF00;
         border-radius: 10px;
         padding: 40px;
-        min-width: 460px;
+        min-width: 530px;
         
 
    
@@ -115,6 +115,8 @@ button{
 .text{
     display: inline-block;
     font-size: 25px; 
-    color: white; 
+    color: #ffffff; 
     margin-right: 80px;
 }
+
+white
