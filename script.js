@@ -13,6 +13,8 @@ let dateSec = document.getElementById("date-sec")
 let dateMin = document.getElementById("date-min")
 let dateHour = document.getElementById("date-hour")
 
+let disp = [counterMs, counterSec, counterMin, counterHour, dateMs, dateSec, dateMin, dateHour]
+
 let msValue = parseInt(dateMs.textContent)
 let secValue = parseInt(dateSec.textContent)
 let minValue = parseInt(dateMin.textContent)
@@ -70,6 +72,7 @@ function startCounterClock(){
     }
     if (counterStatus =="on"){
         clearInterval(counterInterval)
+        counterInterval = false
         counterStatus = "off"
     }
 }
@@ -159,20 +162,43 @@ bothButton.addEventListener("click", startBoth)
 
 /*_______________________Reset buttons___________________________________ */
 
+const counterResetButton = document.getElementById("counter-reset")
+const dateResetButton = document.getElementById("date-reset")
+const bothResetButton = document.getElementById("reset-both-button")
+
+counterResetButton.addEventListener("click", resetCounter)
+dateResetButton.addEventListener("click", resetDate)
+bothResetButton.addEventListener("click", resetBoth)
+
 function resetCounter(){
+    disp.forEach(square=>{square.style.color="white"})
     counterMs.textContent= "00"
     counterSec.textContent= "00"
     counterMin.textContent= "00"
     counterHour.textContent= "00"
+    clearInterval(counterInterval)
+    counterInterval = false
+    counterStatus = "off"
+    
+    
 
 
 }
 
 function resetDate(){
+    disp.forEach(square=>{square.style.color="white"})
     dateMs.textContent = "00"
-    dateSec.textContent = "00"dateMs.textContent = "00"
+    dateSec.textContent = "00"
     dateMin.textContent = "00"
     dateHour.textContent = "00"
     start = false
+    clearInterval(dateInterval)
+    dateInterval= false
+    
 
+}
+
+function resetBoth(){
+    resetCounter()
+    resetDate()
 }
