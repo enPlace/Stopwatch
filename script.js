@@ -20,13 +20,17 @@ let secValue = parseInt(dateSec.textContent)
 let minValue = parseInt(dateMin.textContent)
 let hourValue = parseInt(dateHour.textContent)
 
-const dateButton = document.getElementById("date-button")
-const counterButton = document.getElementById("counter-button")
+const dateButton = document.getElementById("date-start-button")
+const counterButton = document.getElementById("counter-start-button")
 const bothButton = document.getElementById("start-both-button")
 let counterStatus = counterButton.dataset.status
 let dateStatus = dateButton.dataset.status
+let bothStatus= bothButton.dataset.status
 let counterInterval 
-let dateInterval
+let dateInterval 
+let flashInterval
+
+
 
 
 
@@ -65,15 +69,20 @@ function counterClock(){
 
 function startCounterClock(){
     /*Uses a setInterval() or clearInterval() function to start and stop "stopwatch1" */
-    if(counterStatus=="off"){
+    if(counterStatus=="off"||counterStatus=="paused"){
         counterInterval = setInterval(counterClock, 10)
         counterStatus= "on"
+        counterButton.style.backgroundColor = "yellow"
+        counterButton.textContent = "Pause"
         return counterInterval
     }
     if (counterStatus =="on"){
         clearInterval(counterInterval)
         counterInterval = false
-        counterStatus = "off"
+        counterStatus = "paused"
+        counterButton.style.backgroundColor=" rgb(74, 243, 116)"
+        counterButton.textContent = "Start"
+        
     }
 }
 
@@ -108,6 +117,10 @@ let minutes
 let hours 
 
 let pausedMilliseconds =0 //this is to keep track of milliseconds passed during a pause. 
+let pauseStart  //keeps track of when pause was initiated
+
+
+
 
 function dateClock(){
     milliseconds = Date.now() - start.getTime() - pausedMilliseconds
@@ -115,6 +128,8 @@ function dateClock(){
     seconds= Math.floor((milliseconds/1000)%60)
     minutes= Math.floor((milliseconds/1000)/60)%60
     hours= Math.floor(((milliseconds/1000)/60)/60)
+
+    /*____Need onditionals to add 0 to front of number if less than 10__________ */
     if(centiseconds<10)dateMs.textContent = `0${centiseconds}` 
     else dateMs.textContent= centiseconds
 
@@ -145,21 +160,86 @@ function dateClock(){
 function startDateClock(){
     start = new Date
     dateInterval = setInterval(dateClock, 0)
+    dateStatus = "on"
+    dateButton.style.backgroundColor = "yellow"
+    dateButton.textContent = "Pause"
 
 }
-function stopDateClock(){
-    clearInterval(dateInterval)
+function pauseDateClock(){
+    if (dateStatus== "on"){
+        dateStatus = "paused"
+        pauseStart = new Date()
+        clearInterval(dateInterval)
+        dateInterval = false
+        dateButton.style.backgroundColor = "rgb(74, 243, 116)"
+    }else if(dateStatus == "paused"){
+        dateStatus = "on"
+        pausedMilliseconds += Date.now() - pauseStart.getTime()
+        dateInterval = setInterval(dateClock, 0)
+        dateButton.style.backgroundColor = "yellow"
+    
+    }
 }
-dateButton.addEventListener("click", startDateClock)
+
+
+function dateClockController(){
+    /* ______Will chose whether to start or pause the clock____________ */
+    if (dateStatus=="off"){
+        startDateClock()
+    }
+    else if (dateStatus=="on" || dateStatus=="paused"){
+        pauseDateClock()
+    }
+}
+
+dateButton.addEventListener("click", dateClockController)
 
 
 function startBoth(){
-    startDateClock()
+    dateClockController()
     startCounterClock()
+    if(bothStatus=="off"|| bothStatus=="paused"){
+        bothButton.style.backgroundColor = "rgb(74, 243, 116)"
+        bothButton.textContent= "Pause"
+        bothStatus="on"
+    }else if(bothStatus=="on"){
+        bothButton.style.backgroundColor = "rgb(74, 243, 116)"
+        bothButton.textContent="Start"
+        bothStatus="paused"
+        flashInterval = setInterval(flashAllPauseButtons, 500)
+    }
 }
 
 bothButton.addEventListener("click", startBoth)
 
+
+/*______________function for flashing pause button colors________________-*/
+
+function flashDatePauseButton(){
+    if(dateButton.style.backgroundColor!="yellow"){
+        dateButton.style.backgroundColor="yellow"
+    }else if (dateButton.style.backgroundColor=="yellow"){
+        dateButton.style.backgroundColor="rgb(74, 243, 116)"
+    }
+}
+
+function flashCounterPauseButton(){
+    if(counterButton.style.backgroundColor!="yellow"){
+        counterButton.style.backgroundColor="yellow"
+    }else if (counterButton.style.backgroundColor=="yellow"){
+        counterButton.style.backgroundColor="rgb(74, 243, 116)"
+    }
+}
+
+function flashAllPauseButtons(){
+    flashDatePauseButton()
+    flashCounterPauseButton()
+    if (bothButton.style.backgroundColor!="yellow"){
+        bothButton.style.backgroundColor="yellow"
+    }else if (bothButton.style.backgroundColor=="yellow"){
+        bothButton.style.backgroundColor="rgb(74, 243, 116)"
+    }
+}
 
 
 /*_______________________Reset buttons___________________________________ */
@@ -181,6 +261,8 @@ function resetCounter(){
     clearInterval(counterInterval)
     counterInterval = false
     counterStatus = "off"
+    counterButton.style.backgroundColor = "rgb(74, 243, 116)"
+    counterButton.textContent ="Start"
   }
 
 function resetDate(){
@@ -193,11 +275,20 @@ function resetDate(){
     clearInterval(dateInterval)
     dateInterval= false
     pausedMilliseconds = 0
+    dateStatus = "off"
+    dateButton.style.backgroundColor= "rgb(74, 243, 116)"
+    dateButton.textContent="Start"
 }
 
 function resetBoth(){
     resetCounter()
     resetDate()
+    bothButton.textContent="Start"
+    bothButton.style.backgroundColor ="rgb(74, 243, 116)"
+    bothStatus = "off"
+    clearInterval(flashInterval)
+    flashInterval=false
+
 }
 
 /*________Pause Buttons____________*/
@@ -218,19 +309,8 @@ But we have to continue keeping track of pausedMilliseconds, so
 
 */
 
-let pauseStart
 
 //if date status is off, count the elapsed time. If date status is on, add elapsed time to paused milliseconds and call the date function again 
 
-function pauseDateClock(){
-    if (dateStatus=="off"){
-    pauseStart = new Date()
-    elapsedTime = Date.now()- pauseStart.getTime()
-    clearInterval(dateInterval)
-    dateStatus="on"
-    }
+//basically just have to set the pause start on pause, then do date now - pauseStart to make pausedMilliseconds when starting again. 
 
-    
-
-
-}

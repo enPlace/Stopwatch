@@ -40,19 +40,21 @@ body{
 }
 
 
-.start-both-button{
-    width: 100px;
-    height: 645px;
-    margin-top: ;
-    background-color:  rgba(48, 197, 85, 0.842);
-}
 .start-button{
     width: 100px;
     height: 300px;
     margin-left: ;
     background-color: rgb(74, 243, 116);
     margin: 20px;
+} 
+
+.start-both-button{
+    width: 100px;
+    height: 645px;
+    margin-top: ;
+    background-color: rgb(74, 243, 116);;
 }
+
 
 button{
     border-radius: 70px;
