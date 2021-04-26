@@ -31,7 +31,7 @@ let dateInterval
 
 
 
-/********** Script for the stopwatch that simply pushes numbers using setInterval (the "counter clock") ********************+*/
+/*_______________Script for the stopwatch that simply pushes numbers using setInterval (the "counter clock") _________________*/
 
 function counterClock(){
     /*  Function for pushing the counter information to the first stopwatch. 
@@ -80,7 +80,7 @@ function startCounterClock(){
 counterButton.addEventListener("click", startCounterClock)
 
 
-/*******************Script for the stopwatch that uses a Date() object to get the elapsed time***********************+*/
+/*_________________Script for the stopwatch that uses a Date() object to get the elapsed time____________________/
 
 /* 
 --to get total centiseconds: we need to get up to and including the hundredths place, so milliseconds%1000 will give us that. 
@@ -107,8 +107,10 @@ let seconds
 let minutes 
 let hours 
 
+let pausedMilliseconds =0 //this is to keep track of milliseconds passed during a pause. 
+
 function dateClock(){
-    milliseconds = Date.now() - start.getTime()
+    milliseconds = Date.now() - start.getTime() - pausedMilliseconds
     centiseconds= Math.floor((milliseconds%1000)/10)
     seconds= Math.floor((milliseconds/1000)%60)
     minutes= Math.floor((milliseconds/1000)/60)%60
@@ -179,11 +181,7 @@ function resetCounter(){
     clearInterval(counterInterval)
     counterInterval = false
     counterStatus = "off"
-    
-    
-
-
-}
+  }
 
 function resetDate(){
     disp.forEach(square=>{square.style.color="white"})
@@ -194,11 +192,45 @@ function resetDate(){
     start = false
     clearInterval(dateInterval)
     dateInterval= false
-    
-
+    pausedMilliseconds = 0
 }
 
 function resetBoth(){
     resetCounter()
     resetDate()
+}
+
+/*________Pause Buttons____________*/
+
+/* I need to: 
+change the color and text of the pause button 
+maybe flash pause or flash the numbers if they are paused. 
+How to pause date?
+
+well, I need to keep the numbers the same, and then maybe just add to the numbers.... but still 
+that would have the problem of the counter clock.
+
+I could make a variable that keeps track of of milliseconds past during the pause, and then when it restarts 
+the function would just subtract those miliseconds from the total.
+
+So on clicking the pause button, It would add to the pausedMilliseconds variable. 
+But we have to continue keeping track of pausedMilliseconds, so 
+
+*/
+
+let pauseStart
+
+//if date status is off, count the elapsed time. If date status is on, add elapsed time to paused milliseconds and call the date function again 
+
+function pauseDateClock(){
+    if (dateStatus=="off"){
+    pauseStart = new Date()
+    elapsedTime = Date.now()- pauseStart.getTime()
+    clearInterval(dateInterval)
+    dateStatus="on"
+    }
+
+    
+
+
 }
