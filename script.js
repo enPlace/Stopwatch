@@ -81,9 +81,6 @@ function startCounterClock(){
         counterButton.textContent = "Pause"
 
 
-        clearInterval(flashBothInterval)
-        flashAllInterval=false
-        
         return counterInterval
     }
     if (counterStatus =="on"){
