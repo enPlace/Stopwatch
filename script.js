@@ -28,7 +28,10 @@ let dateStatus = dateButton.dataset.status
 let bothStatus= bothButton.dataset.status
 let counterInterval 
 let dateInterval 
-let flashInterval
+
+let flashBothInterval
+let flashDateInterval
+let flashCounterInterval
 
 
 
@@ -70,17 +73,21 @@ function counterClock(){
 function startCounterClock(){
     /*Uses a setInterval() or clearInterval() function to start and stop "stopwatch1" */
     if(counterStatus=="off"||counterStatus=="paused"){
+        clearInterval(flashCounterInterval)
+        flashCounterInterval=false
         counterInterval = setInterval(counterClock, 10)
         counterStatus= "on"
-        counterButton.style.backgroundColor = "yellow"
+        counterButton.style.backgroundColor = "rgb(58, 160, 255)"
         counterButton.textContent = "Pause"
+        
         return counterInterval
     }
     if (counterStatus =="on"){
         clearInterval(counterInterval)
         counterInterval = false
+        flashCounterInterval = setInterval(flashCounterPauseButton, 500)
         counterStatus = "paused"
-        counterButton.style.backgroundColor=" rgb(74, 243, 116)"
+        
         counterButton.textContent = "Start"
         
     }
@@ -161,22 +168,28 @@ function startDateClock(){
     start = new Date
     dateInterval = setInterval(dateClock, 0)
     dateStatus = "on"
-    dateButton.style.backgroundColor = "yellow"
     dateButton.textContent = "Pause"
+    dateButton.style.backgroundColor="rgb(58, 160, 255)"
 
 }
 function pauseDateClock(){
     if (dateStatus== "on"){
+        flashDateInterval =setInterval(flashDatePauseButton, 500)
         dateStatus = "paused"
         pauseStart = new Date()
         clearInterval(dateInterval)
         dateInterval = false
-        dateButton.style.backgroundColor = "rgb(74, 243, 116)"
+        dateButton.textContent = "Start"
+        
     }else if(dateStatus == "paused"){
+        clearInterval(flashDateInterval)
         dateStatus = "on"
         pausedMilliseconds += Date.now() - pauseStart.getTime()
         dateInterval = setInterval(dateClock, 0)
-        dateButton.style.backgroundColor = "yellow"
+        dateButton.style.backgroundColor="rgb(58, 160, 255)"
+        dateButton.textContent = "Start"
+        
+       
     
     }
 }
@@ -186,6 +199,7 @@ function dateClockController(){
     /* ______Will chose whether to start or pause the clock____________ */
     if (dateStatus=="off"){
         startDateClock()
+        
     }
     else if (dateStatus=="on" || dateStatus=="paused"){
         pauseDateClock()
@@ -199,15 +213,18 @@ function startBoth(){
     dateClockController()
     startCounterClock()
     if(bothStatus=="off"|| bothStatus=="paused"){
-        bothButton.style.backgroundColor = "rgb(74, 243, 116)"
+        bothButton.style.backgroundColor = "rgb(58, 160, 255)"
         bothButton.textContent= "Pause"
         bothStatus="on"
+        clearInterval(flashBothInterval)
+        flashAllInterval=false
     }else if(bothStatus=="on"){
-        bothButton.style.backgroundColor = "rgb(74, 243, 116)"
+        //bothButton.style.backgroundColor = "rgb(74, 243, 116)"
         bothButton.textContent="Start"
         bothStatus="paused"
-        flashInterval = setInterval(flashAllPauseButtons, 500)
+        flashBothInterval = setInterval(flashBothPauseButton, 500)
     }
+
 }
 
 bothButton.addEventListener("click", startBoth)
@@ -216,27 +233,25 @@ bothButton.addEventListener("click", startBoth)
 /*______________function for flashing pause button colors________________-*/
 
 function flashDatePauseButton(){
-    if(dateButton.style.backgroundColor!="yellow"){
-        dateButton.style.backgroundColor="yellow"
-    }else if (dateButton.style.backgroundColor=="yellow"){
+    if(dateButton.style.backgroundColor!="rgb(255, 255, 97)"){
+        dateButton.style.backgroundColor="rgb(255, 255, 97)"
+    }else if (dateButton.style.backgroundColor=="rgb(255, 255, 97)"){
         dateButton.style.backgroundColor="rgb(74, 243, 116)"
     }
 }
 
 function flashCounterPauseButton(){
-    if(counterButton.style.backgroundColor!="yellow"){
-        counterButton.style.backgroundColor="yellow"
-    }else if (counterButton.style.backgroundColor=="yellow"){
+    if(counterButton.style.backgroundColor!="rgb(255, 255, 97)"){
+        counterButton.style.backgroundColor="rgb(255, 255, 97)"
+    }else if (counterButton.style.backgroundColor=="rgb(255, 255, 97)"){
         counterButton.style.backgroundColor="rgb(74, 243, 116)"
     }
 }
 
-function flashAllPauseButtons(){
-    flashDatePauseButton()
-    flashCounterPauseButton()
-    if (bothButton.style.backgroundColor!="yellow"){
-        bothButton.style.backgroundColor="yellow"
-    }else if (bothButton.style.backgroundColor=="yellow"){
+function flashBothPauseButton(){
+    if (bothButton.style.backgroundColor!="rgb(255, 255, 97)"){
+        bothButton.style.backgroundColor="rgb(255, 255, 97)"
+    }else if (bothButton.style.backgroundColor=="rgb(255, 255, 97)"){
         bothButton.style.backgroundColor="rgb(74, 243, 116)"
     }
 }
@@ -261,6 +276,8 @@ function resetCounter(){
     clearInterval(counterInterval)
     counterInterval = false
     counterStatus = "off"
+    clearInterval(flashCounterInterval)
+    flashCounterInterval=false
     counterButton.style.backgroundColor = "rgb(74, 243, 116)"
     counterButton.textContent ="Start"
   }
@@ -273,6 +290,7 @@ function resetDate(){
     dateHour.textContent = "00"
     start = false
     clearInterval(dateInterval)
+    clearInterval(flashDateInterval)
     dateInterval= false
     pausedMilliseconds = 0
     dateStatus = "off"
@@ -286,8 +304,7 @@ function resetBoth(){
     bothButton.textContent="Start"
     bothButton.style.backgroundColor ="rgb(74, 243, 116)"
     bothStatus = "off"
-    clearInterval(flashInterval)
-    flashInterval=false
+    clearInterval(flashBothInterval)
 
 }
 

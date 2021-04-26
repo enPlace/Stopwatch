@@ -7,7 +7,14 @@ body{
     color: white;
     font-family: sans-serif;
 }
-
+#testdiv{
+    width:70px;
+    height:70px;
+    position:absolute;
+    border-radius: 10px;
+    background-color: rgb(58, 160, 255);
+    display:none; 
+}
 .watches{
     display: flex; 
     align-items: center;
@@ -59,12 +66,8 @@ body{
 button{
     border-radius: 70px;
 }
-.start-button:hover{
-    background-color: palegoldenrod
-}
-
-.start-both-button:hover{
-    background-color: rgb(91, 197, 20)
+button:hover{
+    background-color: rgb(219, 215, 215) !important
 }
 
 
@@ -123,5 +126,5 @@ button{
 }
 
 .reset{
-    background-color: rgb(230, 235, 182);
+    background-color: rgb(122, 78, 245);
 }
