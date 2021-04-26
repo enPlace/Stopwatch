@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css" type ="text/css">
     <script src ="script.js" defer></script>
 </head>
+
 <body>
+    <div id="wrapper">
     <div id="testdiv"></div>
 
     <div class="both-button-container">
@@ -24,7 +26,7 @@
     <div class="watches">
    
     <div id = "stopwatch1" class ="watchContainer">
-        <div class="watch-title">Test</div>
+        <div class="watch-title">setInterval() Clock</div>
         
        <div id="number-container">
         <div class="hour disp"><div id ="counter-hour" class="nums">00</div></div>
@@ -47,7 +49,7 @@
         
     </div>
     <div id = "stopwatch2" class ="watchContainer">
-        <div id= "title-2" class="watch-title">Test</div>
+        <div id= "title-2" class="watch-title">Date() Clock</div>
         
         <div id="number-container2">
          <div class="hour disp"><div id ="date-hour"class="nums">00</div></div>
@@ -78,5 +80,8 @@
     <button id = "date-reset" class ="start-button reset"  >Reset</button>
     
 </div>
+</div>
+<div class="test-script"><button id="test-button" class="counting">Run a Test Script</button></div>
 </body>
+
 </html>

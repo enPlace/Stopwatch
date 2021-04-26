@@ -79,6 +79,10 @@ function startCounterClock(){
         counterStatus= "on"
         counterButton.style.backgroundColor = "rgb(58, 160, 255)"
         counterButton.textContent = "Pause"
+
+
+        clearInterval(flashBothInterval)
+        flashAllInterval=false
         
         return counterInterval
     }
@@ -87,7 +91,6 @@ function startCounterClock(){
         counterInterval = false
         flashCounterInterval = setInterval(flashCounterPauseButton, 500)
         counterStatus = "paused"
-        
         counterButton.textContent = "Start"
         
     }
@@ -187,7 +190,7 @@ function pauseDateClock(){
         pausedMilliseconds += Date.now() - pauseStart.getTime()
         dateInterval = setInterval(dateClock, 0)
         dateButton.style.backgroundColor="rgb(58, 160, 255)"
-        dateButton.textContent = "Start"
+        dateButton.textContent = "Pause"
         
        
     
@@ -233,26 +236,26 @@ bothButton.addEventListener("click", startBoth)
 /*______________function for flashing pause button colors________________-*/
 
 function flashDatePauseButton(){
-    if(dateButton.style.backgroundColor!="rgb(255, 255, 97)"){
-        dateButton.style.backgroundColor="rgb(255, 255, 97)"
-    }else if (dateButton.style.backgroundColor=="rgb(255, 255, 97)"){
+    if(dateButton.style.backgroundColor=="rgb(58, 160, 255)"){
         dateButton.style.backgroundColor="rgb(74, 243, 116)"
+    }else if (dateButton.style.backgroundColor=="rgb(74, 243, 116)"){
+        dateButton.style.backgroundColor="rgb(58, 160, 255)"
     }
 }
 
 function flashCounterPauseButton(){
-    if(counterButton.style.backgroundColor!="rgb(255, 255, 97)"){
-        counterButton.style.backgroundColor="rgb(255, 255, 97)"
-    }else if (counterButton.style.backgroundColor=="rgb(255, 255, 97)"){
+    if(counterButton.style.backgroundColor=="rgb(58, 160, 255)"){
         counterButton.style.backgroundColor="rgb(74, 243, 116)"
+    }else if (counterButton.style.backgroundColor=="rgb(74, 243, 116)"){
+        counterButton.style.backgroundColor="rgb(58, 160, 255)"
     }
 }
 
 function flashBothPauseButton(){
-    if (bothButton.style.backgroundColor!="rgb(255, 255, 97)"){
-        bothButton.style.backgroundColor="rgb(255, 255, 97)"
-    }else if (bothButton.style.backgroundColor=="rgb(255, 255, 97)"){
+    if(bothButton.style.backgroundColor=="rgb(58, 160, 255)"){
         bothButton.style.backgroundColor="rgb(74, 243, 116)"
+    }else if (bothButton.style.backgroundColor=="rgb(74, 243, 116)"){
+        bothButton.style.backgroundColor="rgb(58, 160, 255)"
     }
 }
 
@@ -308,26 +311,13 @@ function resetBoth(){
 
 }
 
-/*________Pause Buttons____________*/
+/* _________Test script for throwing off counter clock__________________ */
+let counter = 0
+function throwOff(){
+    
+    for(let i=0; i<5000000; i++){
+        counter+=i
+    }
+}
 
-/* I need to: 
-change the color and text of the pause button 
-maybe flash pause or flash the numbers if they are paused. 
-How to pause date?
-
-well, I need to keep the numbers the same, and then maybe just add to the numbers.... but still 
-that would have the problem of the counter clock.
-
-I could make a variable that keeps track of of milliseconds past during the pause, and then when it restarts 
-the function would just subtract those miliseconds from the total.
-
-So on clicking the pause button, It would add to the pausedMilliseconds variable. 
-But we have to continue keeping track of pausedMilliseconds, so 
-
-*/
-
-
-//if date status is off, count the elapsed time. If date status is on, add elapsed time to paused milliseconds and call the date function again 
-
-//basically just have to set the pause start on pause, then do date now - pauseStart to make pausedMilliseconds when starting again. 
-
+document.getElementById("test-button").addEventListener("click", throwOff)
