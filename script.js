@@ -3,7 +3,7 @@
 2. uses Date() to provide the data that will be shown in each number column of the stopwatch
 
 
-Test  !!!!!!!!!!!*/
+Test  again  !!!!!!!!!!!*/
 
 let counterMs = document.getElementById("counter-ms")
 let counterSec = document.getElementById("counter-sec")
