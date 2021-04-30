@@ -1,7 +1,9 @@
 /* We want to have two primary functions, 
 1. uses the setInterval() function to manually count the ms, seconds, mins, hours 
 2. uses Date() to provide the data that will be shown in each number column of the stopwatch
-*/
+
+
+Test  !!!!!!!!!!!*/
 
 let counterMs = document.getElementById("counter-ms")
 let counterSec = document.getElementById("counter-sec")
