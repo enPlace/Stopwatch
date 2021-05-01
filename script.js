@@ -229,26 +229,15 @@ const resetButton = document.getElementById("reset-both-button")
 
 
 function resetCounter(){
-    /* disp.forEach(square=>{square.style.color="white"}) */
-/*     counterMs.textContent= "00"
-    counterSec.textContent= "00"
-    counterMin.textContent= "00"
-    counterHour.textContent= "00" */
     clearInterval(counterInterval)
     counterInterval = false
   }
 
 function resetDate(){
- 
-  /*   dateMs.textContent = "00"
-    dateSec.textContent = "00"
-    dateMin.textContent = "00"
-    dateHour.textContent = "00" */
     start = false
     clearInterval(dateInterval)
     dateInterval= false
     pausedMilliseconds = 0
-
 }
 
 function resetBoth(){
