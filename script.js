@@ -254,7 +254,7 @@ function resetBoth(){
 
 resetButton.addEventListener("click", resetBoth)
 
-/* _________Test script for throwing off setInterval() timer________ */
+/* _________Counting sript for throwing off setInterval() timer________ */
 let counter = 0
 function throwOff(){
     for(let i=0; i<5000000; i++){
@@ -266,7 +266,6 @@ document.getElementById("test-button").addEventListener("click", throwOff)
 
 /*_____Tabs______*/
 let tabs = document.querySelectorAll("[data-tab-target]")
-
 function deactivateTabs(){
     tabs.forEach(tab=>{
         let target = document.querySelector(tab.dataset.tabTarget)
@@ -274,24 +273,21 @@ function deactivateTabs(){
         tab.dataset.status= "inactive"
         tab.firstElementChild.dataset.status = "inactive"
     })
-
 }
 
 tabs.forEach(tab=>{
-    
+    //sets status of clicked tab and tabTarget to "active" and deactivates other any active statuses
     tab.addEventListener("click", e=>{
         if(e.target.classList.contains("tabs")){
             deactivateTabs()
-        e.target.dataset.status = "active"
-        tab.firstElementChild.dataset.status = "active"
-        document.querySelector(e.target.dataset.tabTarget).dataset.status = "active"
+            e.target.dataset.status = "active"
+            tab.firstElementChild.dataset.status = "active"
+            document.querySelector(e.target.dataset.tabTarget).dataset.status = "active"
         }if(e.target.parentNode.classList.contains("tabs")){
             deactivateTabs()
             e.target.dataset.status="active"
             e.target.parentNode.dataset.status = "active"
             document.querySelector(e.target.parentNode.dataset.tabTarget).dataset.status = "active"
         }
-    
-    
     })
 })

@@ -43,8 +43,10 @@ body{
 .tab-text[data-status = "active"]{
     border-bottom: 3px solid white;
 }
-
 #main-container{
+    display: none;
+}
+#main-container[data-status = "active"]{
     
     color: white;
     font-family: sans-serif;
@@ -55,6 +57,27 @@ body{
     width:100%; 
     height: 470px;
     
+}
+#about-container{
+    display:none; 
+}
+
+#about-container[data-status = "active"]{
+    color: white;
+    font-family: sans-serif;
+    background-color: rgb(43, 39, 39);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%; 
+    height: 470px;
+}
+.about-text{
+    max-width: 700px;
+    max-height: 440px;
+    overflow: scroll;
+    overflow-x: hidden;
+
 }
 #testdiv{
     width:70px;
@@ -68,7 +91,7 @@ body{
 
 .watchContainer{
     margin: 20px;
-    border: 5px solid #FFFF00;
+    border: 5px solid rgb(24, 22, 22);;
     border-radius: 50px;
     padding: 10px 40px;
     min-width: 301px;
