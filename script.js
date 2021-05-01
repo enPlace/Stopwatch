@@ -35,11 +35,11 @@ let buttonStatus = startButton.dataset.status //used to determine if timers are 
 
 
 
-/*________This section contains code for the simple timer that pushes numbers using setInterval() ________*/
+/*________Code for the simple timer that pushes numbers using setInterval() ________*/
 
 function counterClock(){
     /*  Function for pushing the counter information to the first stopwatch. 
-        Increments ms by 1 on stopwatch1 and will increment secs, mins, 
+        Increments ms by 1 on timer and will increment secs, mins, 
         and hour if limit of prev value is reached*/
     let ms = parseInt(counterMs.textContent)
     let sec = parseInt(counterSec.textContent)
@@ -114,19 +114,19 @@ let pauseStart  //keeps track of when pause was initiated
 
 
 function checkAccuracy(){
-            /*_____Changing colors of the counter clock to illustrate inaccuracies______ */
-            if(dateSec.textContent != counterSec.textContent){
-                counterSec.style.color = "red"
-            }
-            if (dateSec.textContent == counterSec.textContent){
-                counterSec.style.color = "white"
-            }
-            if (dateMs.textContent!= counterMs.textContent){
-                counterMs.style.color= "red"
-            }
-            if (dateMs.textContent==counterMs.textContent){
-                counterMs.style.color="white"
-            }
+    /*_____Changing colors of the counter clock to illustrate inaccuracies______ */
+    if(dateSec.textContent != counterSec.textContent){
+        counterSec.style.color = "red"
+    }
+    if (dateSec.textContent == counterSec.textContent){
+        counterSec.style.color = "white"
+    }
+    if (dateMs.textContent!= counterMs.textContent){
+        counterMs.style.color= "red"
+    }
+    if (dateMs.textContent==counterMs.textContent){
+        counterMs.style.color="white"
+    }
 }
 
 function dateClock(){
@@ -150,7 +150,6 @@ function dateClock(){
     else dateHour.textContent = hours
     
     checkAccuracy()
-
 }
 
 function startDateClock(){
@@ -255,13 +254,44 @@ function resetBoth(){
 
 resetButton.addEventListener("click", resetBoth)
 
-/* _________Test script for throwing off counter clock__________________ */
+/* _________Test script for throwing off setInterval() timer________ */
 let counter = 0
 function throwOff(){
-    
     for(let i=0; i<5000000; i++){
         counter+=i
     }
 }
-
 document.getElementById("test-button").addEventListener("click", throwOff)
+
+
+/*_____Tabs______*/
+let tabs = document.querySelectorAll("[data-tab-target]")
+
+function deactivateTabs(){
+    tabs.forEach(tab=>{
+        let target = document.querySelector(tab.dataset.tabTarget)
+        target.dataset.status = "inactive"
+        tab.dataset.status= "inactive"
+        tab.firstElementChild.dataset.status = "inactive"
+    })
+
+}
+
+tabs.forEach(tab=>{
+    
+    tab.addEventListener("click", e=>{
+        if(e.target.classList.contains("tabs")){
+            deactivateTabs()
+        e.target.dataset.status = "active"
+        tab.firstElementChild.dataset.status = "active"
+        document.querySelector(e.target.dataset.tabTarget).dataset.status = "active"
+        }if(e.target.parentNode.classList.contains("tabs")){
+            deactivateTabs()
+            e.target.dataset.status="active"
+            e.target.parentNode.dataset.status = "active"
+            document.querySelector(e.target.parentNode.dataset.tabTarget).dataset.status = "active"
+        }
+    
+    
+    })
+})

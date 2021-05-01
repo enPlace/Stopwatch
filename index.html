@@ -10,17 +10,20 @@
 
 <body>
     <div class="header">
-        <div class="tabs left-tab" data-status= "active">
-            <div class="tab" data-status= "active-text">Stopwatch</div>
-           
+
+        <div class="tabs left-tab" data-tab-target= "#main-container"data-status= "active">
+            <div class="tab-text" data-status= "active">Stopwatch</div>
         </div>
-        <div class="tabs">
-            
-            <div class="tab">About</div>
+
+        <div class="tabs" data-tab-target="#about-container">
+            <div class="tab-text">About</div>
         </div>
-        </div>
-    <div id="container">
-        
+
+    </div>
+
+
+
+    <div id="main-container" data-status = "active">
         
     <div id="testdiv"></div>
 
@@ -105,7 +108,8 @@
     <button id = "reset-both-button" class="start-both-button reset" data-status = "off">Reset</button>
 </div>
 
-</div>
+    </div>
+    <div id="about-container"></div>
 <div class="test-script"><button id="test-button" class="counting">Run a Test Script</button></div>
 </body>
 
