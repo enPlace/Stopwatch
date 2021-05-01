@@ -25,7 +25,8 @@ body{
    
 }
 [data-status ="active"]{
-    background-color: rgb(43, 39, 39);;
+    background-color: rgb(43, 39, 39);
+    
 }
 
 
@@ -44,7 +45,7 @@ body{
     border-bottom: 3px solid rgb(24, 22, 22);    
 }
 
-[data-status = "text-active"]{
+[data-status = "active-text"]{
     border-bottom: 3px solid white;
     
 }
