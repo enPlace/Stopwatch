@@ -113,7 +113,21 @@ let pausedMilliseconds = 0 //this is to keep track of milliseconds passed during
 let pauseStart  //keeps track of when pause was initiated
 
 
-
+function checkAccuracy(){
+            /*_____Changing colors of the counter clock to illustrate inaccuracies______ */
+            if(dateSec.textContent != counterSec.textContent){
+                counterSec.style.color = "red"
+            }
+            if (dateSec.textContent == counterSec.textContent){
+                counterSec.style.color = "white"
+            }
+            if (dateMs.textContent!= counterMs.textContent){
+                counterMs.style.color= "red"
+            }
+            if (dateMs.textContent==counterMs.textContent){
+                counterMs.style.color="white"
+            }
+}
 
 function dateClock(){
     milliseconds = Date.now() - start.getTime() - pausedMilliseconds
@@ -135,19 +149,8 @@ function dateClock(){
     if (hours<10) dateHour.textContent = `0${hours}`
     else dateHour.textContent = hours
     
-    /*_____Changing colors of the counter clock to illustrate inaccuracies______ */
-    if(dateSec.textContent != counterSec.textContent){
-        counterSec.style.color = "red"
-    }
-    if (dateSec.textContent == counterSec.textContent){
-        counterSec.style.color = "white"
-    }
-    if (dateMs.textContent!= counterMs.textContent){
-        counterMs.style.color= "red"
-    }
-    if (dateMs.textContent==counterMs.textContent){
-        counterMs.style.color="white"
-    }
+    checkAccuracy()
+
 }
 
 function startDateClock(){
@@ -180,12 +183,13 @@ function dateClockController(){
 }
 
 
-
+/* _____Functions for start and reset buttons___________ */
 
 function startBoth(){
     // starts or pauses both timer functions
     dateClockController()
     startCounterClock()
+    checkAccuracy() 
 
     //changes the color and text content of button, changes button status, uses setInterval() for a
     // flash function when paused. 
