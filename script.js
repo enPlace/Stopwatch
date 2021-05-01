@@ -23,10 +23,10 @@ let hourValue = parseInt(dateHour.textContent)
 //variables to hold setInterval() functions for each timer. 
 let counterInterval 
 let dateInterval 
-
+let flashInterval
 
 //Start button variables
-let startButton = document.getElementById("start-both-button")
+const startButton = document.getElementById("start-both-button")
 let buttonStatus = startButton.dataset.status //used to determine if timers are stopped, started, or paused. 
 
 
@@ -153,7 +153,6 @@ function dateClock(){
 function startDateClock(){
     start = new Date
     dateInterval = setInterval(dateClock, 0) //will update as often as possible 
-
 }
 
 function pauseDateClock(){
@@ -166,7 +165,6 @@ function pauseDateClock(){
         dateStatus = "on"
         pausedMilliseconds += Date.now() - pauseStart.getTime()
         dateInterval = setInterval(dateClock, 0)
-       
     }
 }
 
@@ -185,19 +183,23 @@ function dateClockController(){
 
 
 function startBoth(){
+    // starts or pauses both timer functions
     dateClockController()
     startCounterClock()
+
+    //changes the color and text content of button, changes button status, uses setInterval() for a
+    // flash function when paused. 
     if(buttonStatus=="off"|| buttonStatus=="paused"){
         startButton.style.backgroundColor = "rgb(58, 160, 255)" //blue
         startButton.textContent= "Pause"
         buttonStatus="on"
-        //clearInterval(flashBothInterval)
-        //flashAllInterval=false
+        clearInterval(flashInterval)  //stops flashing colors
+        flashInterval=false
     }else if(buttonStatus=="on"){
         startButton.style.backgroundColor = "rgb(20, 224, 82)" //green
         startButton.textContent="Start"
         buttonStatus="paused"
-        //flashBothInterval = setInterval(flashBothPauseButton, 500)
+        flashInterval = setInterval(flashPauseButton, 500) //changes color every .5 secs when paused
     }
 
 }
@@ -208,62 +210,57 @@ startButton.addEventListener("click", startBoth)
 /*______________function for flashing pause button colors________________-*/
 
 
-function flashBothPauseButton(){
-    if(bothButton.style.backgroundColor=="rgb(58, 160, 255)"){
-        bothButton.style.backgroundColor="rgb(74, 243, 116)"
-    }else if (bothButton.style.backgroundColor=="rgb(74, 243, 116)"){
-        bothButton.style.backgroundColor="rgb(58, 160, 255)"
+function flashPauseButton(){
+    if(startButton.style.backgroundColor=="rgb(20, 224, 82)"){ //green
+        startButton.style.backgroundColor="rgb(58, 160, 255)" //blue
+    }else if (startButton.style.backgroundColor=="rgb(58, 160, 255)"){ //blue
+        startButton.style.backgroundColor="rgb(20, 224, 82)"//green
     }
 }
 
 
-/*_______________________Reset buttons___________________________________ */
+/*_______________________Reset ___________________________ */
 
-const counterResetButton = document.getElementById("counter-reset")
-const dateResetButton = document.getElementById("date-reset")
-const bothResetButton = document.getElementById("reset-both-button")
+const resetButton = document.getElementById("reset-both-button")
 
 
 function resetCounter(){
-    disp.forEach(square=>{square.style.color="white"})
-    counterMs.textContent= "00"
+    /* disp.forEach(square=>{square.style.color="white"}) */
+/*     counterMs.textContent= "00"
     counterSec.textContent= "00"
     counterMin.textContent= "00"
-    counterHour.textContent= "00"
+    counterHour.textContent= "00" */
     clearInterval(counterInterval)
     counterInterval = false
-    counterStatus = "off"
-    clearInterval(flashCounterInterval)
-    flashCounterInterval=false
-    counterButton.style.backgroundColor = "rgb(74, 243, 116)"
-    counterButton.textContent ="Start"
   }
 
 function resetDate(){
-    disp.forEach(square=>{square.style.color="white"})
-    dateMs.textContent = "00"
+ 
+  /*   dateMs.textContent = "00"
     dateSec.textContent = "00"
     dateMin.textContent = "00"
-    dateHour.textContent = "00"
+    dateHour.textContent = "00" */
     start = false
     clearInterval(dateInterval)
-    clearInterval(flashDateInterval)
     dateInterval= false
     pausedMilliseconds = 0
-    dateStatus = "off"
-    dateButton.style.backgroundColor= "rgb(74, 243, 116)"
-    dateButton.textContent="Start"
+
 }
 
 function resetBoth(){
     resetCounter()
     resetDate()
-    bothButton.textContent="Start"
-    bothButton.style.backgroundColor ="rgb(74, 243, 116)"
-    bothStatus = "off"
-    clearInterval(flashBothInterval)
-
+    disp.forEach(element=>{
+        element.style.color="white"
+        element.textContent = "00"
+    })
+    startButton.textContent="Start"
+    startButton.style.backgroundColor ="rgb(20, 224, 82)" //green
+    buttonStatus = "off"
+    clearInterval(flashInterval)
 }
+
+resetButton.addEventListener("click", resetBoth)
 
 /* _________Test script for throwing off counter clock__________________ */
 let counter = 0
