@@ -75,12 +75,12 @@ button{
 .disp{
     width:50px;
     height: 70px; 
-    border: 3px solid white;
+    border-bottom: 3px solid white;
     display: inline-block;
     margin:0px 5px;
     text-align: center;
     font-size: 40px;
-    border-radius: 15px;
+    
 }
 
 .nums{
@@ -89,7 +89,7 @@ button{
 .dot-container{
     display: inline-block;
     
-    font-size: 30px;
+    font-size: 40px;
     
     
 }
@@ -104,7 +104,10 @@ button{
     margin-bottom: 10px;
    
 }
-.text-hour{
+.hide{
+    color: rgb(43, 39, 39);
+}
+/* .text-hour{
     margin-left: 10px;
 }
 
@@ -117,7 +120,7 @@ button{
 .text-ms{
     margin-left: 50px;
 }
-
+ */
 .reset{
     background-color: rgb(211, 212, 195);
 }
