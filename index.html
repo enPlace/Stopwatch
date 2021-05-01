@@ -10,10 +10,14 @@
 
 <body>
     <div class="header">
-        <ul class="tabs">
-            <li class="tab">Stopwatch</li>
-            <li class="tab">About</li>
-        </ul>
+        <div class="tabs left-tab" data-status= "active">
+            <div class="tab" data-status= "text-active">Stopwatch</div>
+           
+        </div>
+        <div class="tabs">
+            
+            <div class="tab">About</div>
+        </div>
         </div>
     <div id="container">
         
@@ -31,7 +35,7 @@
     <div class="watches">
    
     <div id = "stopwatch1" class ="watchContainer">
-        <div class="watch-title">setInterval() Clock</div>
+        <div class="watch-title">setInterval() Timer</div>
         
        <div id="number-container">
         <div class="hour disp">
@@ -66,7 +70,7 @@
         
     </div>
     <div id = "stopwatch2" class ="watchContainer">
-        <div id= "title-2" class="watch-title">Date() Clock</div>
+        <div id= "title-2" class="watch-title">Date() Timer</div>
         
         <div id="number-container2">
          <div class="hour disp">

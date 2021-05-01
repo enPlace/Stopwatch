@@ -6,24 +6,51 @@ body{
     
 }
 .header{
-    position: relative;
-    text-align: center;
-    width:100%;
-}
-.tabs{
-    color: white;
-    position: absolute;
-    bottom: 0;
-    margin-left: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+
     
+  
 }
+
+.tabs{
+    color: white;  
+    max-width: 50%;
+    align-self: flex-end;
+    border-left: 2.5px solid rgb(24, 22, 22);
+    
+    border-right: 2.5px solid rgb(24, 22, 22);
+   
+}
+[data-status ="active"]{
+    background-color: rgb(43, 39, 39);;
+}
+
+
+.tabs:hover{
+    background-color: rgb(92, 83, 83);
+}
+.left-tab{
+    margin-left: -250px;
+}
+
 .tab{
     display: inline-block;
+    margin: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+    border-bottom: 3px solid rgb(24, 22, 22);    
+}
 
+[data-status = "text-active"]{
+    border-bottom: 3px solid white;
+    
 }
 
 #container{
-    margin-top: 6%;
+    margin-top;
     color: white;
     font-family: sans-serif;
     background-color: rgb(43, 39, 39);
@@ -159,7 +186,8 @@ button{
     30px;
     font-size: 15px;
     border-radius: 10px;
-    background-color: rgb(237, 238, 220)
+    background-color: rgb(237, 238, 220);
+    margin-bottom: 40px;
    
 }
 .counting:hover{
